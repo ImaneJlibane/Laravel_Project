@@ -20,15 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Define the dashboard route for authenticated users
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Define the home route which directs to the appropriate controller based on user type
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
-// Define routes for authenticated users
 Route::middleware('auth')->group(function () {
 
     // Routes for regular users
@@ -45,7 +39,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// Include authentication routes
 require __DIR__.'/auth.php';
 
 
