@@ -25,8 +25,6 @@
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Name</th>
                                 <th class="px-4 py-2">Description</th>
-                                <th class="px-4 py-2">Image</th>
-                                <th class="px-4 py-2">Is Active</th>
                                 <th class="px-4 py-2">Action</th>
                             </tr>
                         </thead>
@@ -36,16 +34,6 @@
                                 <td class="border px-4 py-2">{{$item->id}}</td>
                                 <td class="border px-4 py-2">{{$item->name}}</td>
                                 <td class="border px-4 py-2">{{$item->description}}</td>
-                                <td class="border px-4 py-2">
-                                    <img src="{{ asset($item->image) }}" class="w-16 h-16 object-cover" alt="Img" />
-                                </td>
-                                <td class="border px-4 py-2">
-                                    @if ($item->is_active)
-                                        Active
-                                    @else
-                                        In-Active
-                                    @endif
-                                </td>
                                 <td class="border px-4 py-2">
                                     <a href="{{ url('categories/'.$item->id.'/edit') }}" class="btn btn-success mx-2 bg-green-500 text-white px-3 py-1 rounded-md">Edit</a>
                                     <a href="{{ url('categories/'.$item->id.'/delete') }}" class="btn btn-danger mx-1 bg-red-500 text-white px-3 py-1 rounded-md" onclick="return confirm('Are you sure ?')">Delete</a>

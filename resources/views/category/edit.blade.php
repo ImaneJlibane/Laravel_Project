@@ -39,17 +39,6 @@
                             @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="is_active" class="inline-flex items-center">
-                                <input type="checkbox" id="is_active" name="is_active" class="form-checkbox" {{ $category->is_active ? 'checked' : '' }}>
-                                <span class="ml-2">Is Active</span>
-                            </label>
-                            @error('is_active') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="image" class="block">Upload File/Image</label>
-                            <input type="file" id="image" name="image" class="form-input w-full rounded-md" />
-                        </div>
-                        <div class="mb-4">
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Update</button>
                         </div>
 

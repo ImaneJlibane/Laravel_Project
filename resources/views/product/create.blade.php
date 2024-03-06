@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Categories</title>
+    <title>Add Product</title>
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -14,17 +14,17 @@
         <div class="col-span-1">
 
             @if (session('status'))
-                <div class="bg-green-200 text-green-800 px-4 py-2 mb-4">{{session('status')}}</div>
+                <div class="bg-green-200 text-green-800 px-4 py-2 mb-4">{{ session('status') }}</div>
             @endif
 
             <div class="bg-white shadow-md rounded-md">
                 <div class="bg-gray-200 px-4 py-3 border-b border-gray-300">
-                    <h4 class="text-lg font-semibold">Add Categories
-                        <a href="{{ url('categories') }}" class="btn btn-primary float-right text-white bg-blue-500 px-3 py-1 rounded-md">Back</a>
+                    <h4 class="text-lg font-semibold">Add Product
+                        <a href="{{ route('products.index') }}" class="btn btn-primary float-right text-white bg-blue-500 px-3 py-1 rounded-md">Back</a>
                     </h4>
                 </div>
                 <div class="px-4 py-3">
-                    <form action="{{ url('categories/create') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
@@ -36,6 +36,20 @@
                             <label for="description" class="block">Description</label>
                             <textarea id="description" name="description" class="form-textarea w-full rounded-md" rows="3">{{ old('description') }}</textarea>
                             @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="image" class="block">Upload File/Image</label>
+                            <input type="file" id="image" name="image" class="form-input w-full rounded-md" />
+                            @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="category_id" class="block">Category</label>
+                            <select name="category_id" id="category_id" class="form-select w-full rounded-md">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-4">
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
